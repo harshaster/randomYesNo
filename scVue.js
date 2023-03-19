@@ -9,6 +9,8 @@ const app = new Vue({
     },
     watch: {
         question(newQ, oldQ) {
+            this.image=''
+            document.getElementsByTagName('img')[0].style.display = "none";
             if (newQ.indexOf('?') > -1) {
                 this.getAnswer();
             }
@@ -24,7 +26,7 @@ const app = new Vue({
                 const res = await fetch('https://yesno.wtf/api').then(result => result.json());
                 this.answer = res.answer;
                 this.image = res.image;
-                document.getElementsByTagName('iframe')[0].style.display = "block";
+                document.getElementsByTagName('img')[0].style.display = "block";
             }
             catch (e) {
                 this.answer = 'Error! could not reach API. '+e;
