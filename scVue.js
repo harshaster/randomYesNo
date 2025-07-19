@@ -1,6 +1,7 @@
-const app = new Vue({
-    el: "#app",
-    data: function(){
+const { createApp } = Vue
+
+createApp({
+    data: function () {
         return {
             question: '',
             answer: 'Question usually contains a question mark ;-)',
@@ -9,7 +10,7 @@ const app = new Vue({
     },
     watch: {
         question(newQ, oldQ) {
-            this.image=''
+            this.image = ''
             document.getElementsByTagName('img')[0].style.display = "none";
             if (newQ.indexOf('?') > -1) {
                 this.getAnswer();
@@ -29,8 +30,8 @@ const app = new Vue({
                 document.getElementsByTagName('img')[0].style.display = "block";
             }
             catch (e) {
-                this.answer = 'Error! could not reach API. '+e;
+                this.answer = 'Error! could not reach API. ' + e;
             }
         }
     }
-})
+}).mount('#app')
